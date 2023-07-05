@@ -7,7 +7,7 @@ Joystick_ Joystick;
 void setup() {
   Serial.begin(19200);
 	Joystick.begin();
-  callback = [](Type type, Data data) {
+  callback = [](Type type, Data data, byte checksum, bool chk) {
     Serial.print("Type : ");
     Serial.print((int)type);
     Serial.print("\tData : ");
