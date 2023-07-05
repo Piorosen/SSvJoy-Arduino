@@ -22,6 +22,7 @@ typedef union {
 #pragma pack(push, 1)
 struct ParseResult { 
   Type type;
+  byte id;
   Data data;
   byte checksum;
 };
