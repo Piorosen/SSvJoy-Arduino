@@ -19,11 +19,17 @@ void setup() {
       case Type::AxisY:
         Joystick.setYAxis(data.Axis);
         break;
+      case Type::AxisZ:
+        Joystick.setZAxis(data.Axis);
+        break;
       case Type::AxisRotX:
         Joystick.setRxAxis(data.Axis);
         break;
       case Type::AxisRotY:
         Joystick.setRyAxis(data.Axis);
+        break;
+      case Type::AxisRotZ:
+        Joystick.setRzAxis(data.Axis);
         break;
       case Type::Rudder:
         Joystick.setRudder(data.Axis);
