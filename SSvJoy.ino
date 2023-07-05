@@ -6,7 +6,7 @@
 Joystick_ Joystick;
 
 void setup() {
-  Serial.begin(19200);
+  Serial.begin(115200);
 	Joystick.begin();
   callback = [](Type type, byte id, Data data, byte checksum, bool chk) {
     switch (type) {
