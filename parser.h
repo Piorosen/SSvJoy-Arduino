@@ -13,14 +13,15 @@ char buffer[256] = {0, };
 int buffer_idx = 0;
 bool read_data = false;
 
-bool compute_checksum(char* data, int size, byte checksum) { 
+bool compute_checksum(char* data, int size) { 
   byte check = 0;
   for (int i = 0; i < size; i++) { 
     check ^= data[i];
   }
-  if (check == checksum) { 
+  if (check == 0) {
     return true;
-  }else { 
+  }
+  else {
     return false;
   }
 }
@@ -43,7 +44,7 @@ void read_next(int value) {
     read_data = false;
     ParseResult pr = *(ParseResult*)&buffer[0];
 
-    bool chk = compute_checksum(buffer, buffer_idx, pr.checksum);
+    bool chk = compute_checksum(buffer, buffer_idx);
     if (chk == false && !DEBUG_FLAG) { 
       Serial.print("Checksum Error !!!\n");
     }else { 
