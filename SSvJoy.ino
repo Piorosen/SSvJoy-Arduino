@@ -14,6 +14,10 @@ void setup() {
     Serial.print(data.Axis);
     Serial.print(" : ");
     Serial.print(data.Value);
+    Serial.print("\tCheck : ");
+    Serial.print(checksum);
+    Serial.print(" : ");
+    Serial.print(chk);
     Serial.print("\n");
   };
 }
