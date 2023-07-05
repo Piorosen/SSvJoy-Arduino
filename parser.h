@@ -3,9 +3,10 @@
 
 #include <memory>
 
+#include "option.h"
 #include "structure.h"
 
-void (*callback)(Type type, Data data, byte checksum, bool chk);
+void (*callback)(Type type, byte id, Data data, byte checksum, bool chk);
 void (*error)();
 
 char buffer[256] = {0, };
@@ -41,7 +42,14 @@ void read_next(int value) {
   else if (value == '#') { 
     read_data = false;
     ParseResult pr = *(ParseResult*)&buffer[0];
-    callback(pr.type, pr.data, pr.checksum, compute_checksum(buffer, buffer_idx, pr.checksum));
+
+    bool chk = compute_checksum(buffer, buffer_idx, pr.checksum);
+    if (chk == false && !DEBUG_FLAG) { 
+      Serial.print("Checksum Error !!!\n");
+    }else { 
+      callback(pr.type, pr.id, pr.data, pr.checksum, chk);
+    }
+
     memset(buffer, 0, sizeof(buffer));
     buffer_idx = 0;
   }

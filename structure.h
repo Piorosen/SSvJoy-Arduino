@@ -5,8 +5,8 @@ typedef unsigned char byte;
 
 enum class Type : byte {
   Button,
-  AxisX, AxisY,
-  AxisRotX, AxisRotY,
+  AxisX, AxisY, AxisZ,
+  AxisRotX, AxisRotY, AxisRotZ,
   Rudder,
   Throttle,
   Accelerator,
@@ -22,6 +22,7 @@ typedef union {
 #pragma pack(push, 1)
 struct ParseResult { 
   Type type;
+  byte id;
   Data data;
   byte checksum;
 };
